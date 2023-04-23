@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #4caf50;
+  --secondary-color: #268729;
+}
+
 body {
   margin: 0rem auto;
   /* display: flex; */
@@ -19,6 +24,12 @@ h1 {
   line-height: 1.1;
 }
 
+h3,
+h4,
+h5 {
+  margin: 0.5rem 0rem;
+}
+
 a {
   text-decoration: none;
 }
@@ -29,7 +40,7 @@ a:hover {
 }
 
 form button[type="submit"] {
-  background-color: #6b8e23;
+  background-color: var(--primary-color);
   color: #fff;
   border: none;
   border: 1px solid transparent;
@@ -45,5 +56,5 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-  background-color: #556b2f;
+  background-color: var(--primary-color);
 }

@@ -1,14 +1,15 @@
 import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
-import books from "../book.json";
-// const { persistAtom } = recoilPersist({
-//   key: "bookState",
-//   storage: sessionStorage,
-// });
-
+import books from "../constants/book.json";
+import { bookData } from "../types/book";
 const sessionStorageEffect =
-  (key) =>
-  ({ setSelf, onSet }) => {
+  (key: string) =>
+  ({
+    setSelf,
+    onSet,
+  }: {
+    setSelf: (newValue: unknown) => void;
+    onSet: (callback: any) => void;
+  }) => {
     const savedValue = sessionStorage.getItem(key);
     if (savedValue != null) {
       setSelf(JSON.parse(savedValue));
@@ -17,7 +18,7 @@ const sessionStorageEffect =
       sessionStorage.setItem(key, JSON.stringify(books));
     }
 
-    onSet((newValue, _, isReset) => {
+    onSet((newValue: bookData[], _, isReset: boolean) => {
       isReset
         ? sessionStorage.removeItem(key)
         : sessionStorage.setItem(key, JSON.stringify(newValue));

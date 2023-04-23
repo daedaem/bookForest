@@ -4,9 +4,10 @@
   left: 0;
   position: fixed;
   width: 100%;
-  background-color: #2e8b57;
+  background-color: var(--secondary-color);
   z-index: 999;
 }
+
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -33,4 +34,11 @@
   text-decoration: none;
   color: #f4f4e7;
   cursor: pointer;
+}
+.cart {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #ffff;
 }

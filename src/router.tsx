@@ -2,23 +2,34 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Main from "./pages/Main";
-import Header from "./components/Header";
+import EditProfile from "./pages/EditProfile";
+import GeneralLayout from "./layout/GeneralLayout";
+import ErrorPage from "./pages/ErrorPage";
+
 const routerData = [
   {
     path: "/",
     element: <Main />,
-    // loader: rootLoader,
+    errorElement: <ErrorPage />,
     withAuth: false,
   },
   {
     path: "/login",
     element: <Login />,
+    errorElement: <ErrorPage />,
     withAuth: false,
   },
   {
     path: "/signup",
     element: <Signup />,
-    // withAuth: false,
+    errorElement: <ErrorPage />,
+    withAuth: false,
+  },
+  {
+    path: "/editprofile",
+    element: <EditProfile />,
+    errorElement: <ErrorPage />,
+    withAuth: true,
   },
 ];
 export const routers = createBrowserRouter(
@@ -26,10 +37,8 @@ export const routers = createBrowserRouter(
     path: router.path,
     withAuth: router.withAuth,
     element: (
-      <>
-        <Header />
-        {router.element}
-      </>
+      <GeneralLayout withAuth={router.withAuth}>{router.element}</GeneralLayout>
     ),
+    errorElement: <ErrorPage />,
   }))
 );

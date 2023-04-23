@@ -5,12 +5,12 @@ import classes from "./FormInput.module.css";
 type FormInputProps = {
   label: string;
   name: any;
-  // register: UseFormRegister<FormData>;
   register: any;
   validation: RegisterOptions;
   type: string;
   errors: any;
   fields?: string[];
+  defaultValue?: string;
 };
 
 const FormInput = ({
@@ -21,12 +21,17 @@ const FormInput = ({
   type,
   errors,
   fields,
+  defaultValue,
 }: FormInputProps) => {
   if (fields?.includes(name)) {
     return (
       <>
         <label htmlFor={name}>{label}</label>
-        <input {...register(name, validation)} type={type} />
+        <input
+          {...register(name, validation)}
+          type={type}
+          defaultValue={defaultValue}
+        />
         {errors[name] ? (
           <p className={classes.error}>{errors[name].message}</p>
         ) : (

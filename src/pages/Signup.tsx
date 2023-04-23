@@ -3,29 +3,27 @@ import FormInput from "../components/FormInput";
 import classes from "./Signup.module.css";
 import { useRecoilState } from "recoil";
 import { userState } from "../atoms/userState";
-
-type FormData = {
-  username: string;
-  password: string;
-};
+import { useNavigate } from "react-router-dom";
+import { userData } from "../types/user";
 
 const Signup = () => {
   const [users, setUsers] = useRecoilState(userState);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
-  const onSubmit = (data: FormData) => {
+  } = useForm();
+  const onSubmit = (data: userData) => {
     const res = users.filter(
-      (user) => user.name == data.username || user.email == data.email
+      (user: userData) =>
+        user.username == data.username || user.email == data.email
     );
     if (res.length) alert("이미 가입된 유저네임 또는 이메일입니다.");
     else {
-      setUsers((prev) => [...prev, data]);
+      setUsers((prev) => [...prev, { ...data, id: users.length + 1 }]);
       alert("signup success");
-      //이동하자
+      navigate("/login");
     }
   };
 

@@ -3,13 +3,14 @@ import { bookState } from "./../atoms/bookState";
 import BookListItem from "./BookListItem";
 import classes from "./BookList.module.css";
 import { useState } from "react";
-import { category, priceRanges } from "../utils/bookCategory";
+import { category } from "../constants/bookCategory";
+import { bookData } from "../types/book";
 
 const BookList = () => {
   const [bookList, setBookList] = useRecoilState(bookState);
   const [categoryFilter, setCategoryFilter] = useState("");
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category: string) => {
     if (category === "All") {
       setCategoryFilter("");
     } else {
@@ -17,7 +18,7 @@ const BookList = () => {
     }
   };
 
-  const filteredBooks = bookList.filter((book) =>
+  const filteredBooks = bookList.filter((book: bookData) =>
     categoryFilter === ""
       ? true
       : book.category && book.category!.includes(categoryFilter)
@@ -42,7 +43,7 @@ const BookList = () => {
         </div>
       </div>
       <ul>
-        {filteredBooks.map((book) => (
+        {filteredBooks.map((book: bookData) => (
           <BookListItem
             key={book.id}
             book={{

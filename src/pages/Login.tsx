@@ -3,28 +3,29 @@ import FormInput from "../components/FormInput";
 import classes from "./Login.module.css";
 import { useRecoilState } from "recoil";
 import { userState } from "../atoms/userState";
-import { setToken } from "../utils/token";
-
-type FormData = {
-  email: string;
-  password: string;
-};
+import { getToken, setToken } from "../utils/token";
+import { useNavigate } from "react-router-dom";
+import { userData } from "../types/user";
 
 const Login = () => {
   const [users, setUsers] = useRecoilState(userState);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
-  const onSubmit = (data: FormData) => {
-    const res = users.filter((user) => {
-      return user.email === data.email && user.password === data.password;
-    });
-    if (res.length) {
-      //이동예정
-      setToken(data);
-      console.log(data);
+  } = useForm<userData>();
+
+  const onSubmit = (data: userData) => {
+    const user = users.find(
+      (user: userData) =>
+        user.email === data.email && user.password === data.password
+    );
+
+    if (user) {
+      // 로그인에 성공한 경우, 세션에 사용자 정보를 저장
+      setToken(user.id);
+      navigate("/");
     } else {
       alert("정확한 이메일 주소와 비번을 입력해주세요.");
     }

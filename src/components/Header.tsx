@@ -1,6 +1,7 @@
 import classes from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { setToken, getToken, removeToken } from "../utils/token";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header: React.FC = (props) => {
   const isToken = getToken();
@@ -9,12 +10,15 @@ const Header: React.FC = (props) => {
   const logoutHandler = () => {
     removeToken();
     alert("로그아웃 되었습니다.");
-    navigate("/");
+    navigate("/login");
   };
   const headerContent = isToken ? (
     <ul>
       <Link to="/" className={classes.link}>
-        마켓
+        도서 목록
+      </Link>
+      <Link to="/editprofile" className={classes.link}>
+        정보 수정
       </Link>
       <div className={classes.link} onClick={logoutHandler}>
         로그아웃
@@ -23,7 +27,7 @@ const Header: React.FC = (props) => {
   ) : (
     <ul>
       <Link to="/" className={classes.link}>
-        마켓
+        도서 목록
       </Link>
       <Link to="/signup" className={classes.link}>
         회원가입
@@ -41,6 +45,9 @@ const Header: React.FC = (props) => {
           BookForest
         </Link>
         {headerContent}
+        <Link to="/cart" className={`${classes.link} ${classes.cart}`}>
+          <FaShoppingCart />
+        </Link>
       </div>
     </header>
   );
