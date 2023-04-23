@@ -1,0 +1,36 @@
+.headers {
+  height: 4rem;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  background-color: #2e8b57;
+  z-index: 999;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  padding: 0rem 3rem 0rem 3rem;
+  margin: 0rem auto;
+}
+.headers ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-content: center;
+  gap: 1rem;
+}
+.headers .logo {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #f4f4e7;
+  font-weight: bold;
+  cursor: pointer;
+}
+.link {
+  text-decoration: none;
+  color: #f4f4e7;
+  cursor: pointer;
+}

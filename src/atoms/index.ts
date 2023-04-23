@@ -1,7 +1,7 @@
-import { memberState } from "./memberState";
+import { userState } from "./userState";
 import { bookState } from "./bookState";
 
 export const states = {
-  memberState,
+  userState,
   bookState,
 };

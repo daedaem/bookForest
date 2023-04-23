@@ -1,0 +1,15 @@
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: inline;
+}
+
+.error-placeholder {
+  height: 0.8rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  visibility: hidden;
+}
