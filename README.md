@@ -14,6 +14,9 @@ npm install
 npm run start
 ```
 
+## 소요기간
+2023.04.23 ~ 2023.04.24
+
 ## 사용 기술
 
 - React
